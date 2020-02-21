@@ -40,12 +40,10 @@ public class Testes {
 		try {
 			System.setProperty(DriverChome, caminhoDriver);
 			WebDriver driver = new FirefoxDriver();
-			driver.manage().window().setSize(new Dimension(1260, 765));
-			
+			driver.manage().window().setSize(new Dimension(1260, 765));			
 			driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 			Thread.sleep(2000);
 			driver.findElement(By.id("elementosForm:sugestoes")).sendKeys("texto\ntexto");
-			
 			String Verificacao = driver.findElement(By.id("elementosForm:sugestoes")).getAttribute("value");
 			assertEquals("texto\ntexto", Verificacao);
 			driver.quit();

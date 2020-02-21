@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.Alert;
 
@@ -60,4 +61,28 @@ public class TestAlert {
 		alert.accept();
 		driver.quit();
 	}
+
+	@Test
+	public void interagirComPrompt() {
+		// Este caso de teste está realizando a verificação somete do caminho feliz.
+		String TextAlertNumero,textAlertConfirma,textAlertFim;
+		System.setProperty(DriverChome, caminhoDriver);
+		WebDriver driver = new FirefoxDriver();
+		driver.manage().window().setSize(new Dimension(1200, 765));
+		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		driver.findElement(By.id("prompt")).click();
+		Alert alert = driver.switchTo().alert();
+		TextAlertNumero = alert.getText();
+		assertEquals(TextAlertNumero, alert.getText());
+		alert.sendKeys("123");
+		alert.accept();
+		textAlertConfirma = alert.getText();
+		assertEquals(textAlertConfirma, alert.getText());
+		alert.accept();
+		textAlertFim = alert.getText();
+		assertEquals(textAlertFim, alert.getText());
+		alert.accept();
+	}
+
+	
 }
