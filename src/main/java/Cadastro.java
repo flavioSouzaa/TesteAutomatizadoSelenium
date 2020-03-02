@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.Select;
 public class Cadastro {
 	String DriverChome = "webdriver.gecko.driver";
 	String caminhoDriver = "C:\\Users\\Flavio\\Downloads\\Teste Automatizados Selenium WebDriver\\Driver\\Drivers browser\\geckodriver-v0.26.0-win64\\geckodriver.exe";
-	WebDriver driver;
+	private WebDriver driver;
 
 	@Before
 	public void Inicializa() {
