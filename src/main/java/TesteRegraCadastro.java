@@ -81,7 +81,6 @@ public class TesteRegraCadastro {
 		if(comidas.contains("Vegetariano"))page.SetComunidaFavoritaVegetariano();
 		page.SetTipoEsporte(esportes);		
 		page.Cadastrar();		
-		System.out.println(msg);
 		assertEquals(msg, dsl.AlertObterTextoAceita());
 	}	
 	
