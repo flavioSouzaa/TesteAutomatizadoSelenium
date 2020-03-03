@@ -23,7 +23,10 @@ public class ValidacoesPage {
 	public void SetSexoMasculino() {
 		dsl.ClicarCheck("elementosForm:sexo:0");
 	}
-	
+
+	public void SetSexoFeminino() {
+		dsl.ClicarCheck("elementosForm:sexo:1");
+	}
 	public void SetComunidaFavoritaCarne() {
 		dsl.ClicarRadio("elementosForm:comidaFavorita:0");
 	}
