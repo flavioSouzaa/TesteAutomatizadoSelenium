@@ -19,6 +19,7 @@ public class Cadastro {
 	String caminhoDriver = "C:\\Users\\Flavio\\Downloads\\Teste Automatizados Selenium WebDriver\\Driver\\Drivers browser\\geckodriver-v0.26.0-win64\\geckodriver.exe";
 	private WebDriver driver;
 	private DSL dsl;
+	private CadastroPage page;
 
 	@Before
 	public void Inicializa() {
@@ -27,6 +28,7 @@ public class Cadastro {
 		driver.manage().window().setSize(new Dimension(1260, 765));
 		driver.get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		dsl = new DSL(driver);
+		page = new CadastroPage(driver);
 	}
 
 	@After
@@ -75,21 +77,20 @@ public class Cadastro {
 
 	@Test
 	public void CadastroSimplificado() {
-		dsl.Escreve("elementosForm:nome","Flavio");
-		dsl.Escreve("elementosForm:sobrenome","Souza");
-		dsl.ClicarCheck("elementosForm:sexo:0");
-		dsl.ClicarRadio("elementosForm:comidaFavorita:2");
-		dsl.SelecionarCombo("elementosForm:escolaridade","Mestrado");
-		//new Select(driver.findElement(By.id("elementosForm:escolaridade"))).selectByVisibleText("Mestrado");
-		dsl.SelecionarCombo("elementosForm:esportes","Natacao");		
-		dsl.ClicarBotao("elementosForm:cadastrar");
-
-		Assert.assertTrue(dsl.ObterTexto("resultado").startsWith("Cadastrado!"));// verifica se a string começa com o valor esperado.
-		Assert.assertTrue(dsl.ObterTexto("descNome").endsWith("Flavio"));// verifica se a String termina com o valor esperado. 
-		Assert.assertTrue(dsl.ObterTexto("descSobrenome").contains("Souza"));
-		Assert.assertTrue(dsl.ObterTexto("descSexo").contains("Masculino"));
-		Assert.assertTrue(dsl.ObterTexto("descComida").contains("Pizza"));
-		Assert.assertTrue(dsl.ObterTexto("descEscolaridade").contains("mestrado"));
+		page.SetNome("Flavio");
+		page.SetSobreNome("Souza");
+		page.SetSexoMasculino();
+		page.SetComunidaFavoritaPizza();
+		page.EscolaridadeMestrado("Mestrado");
+		page.SetTipoEsporte("Natacao");
+		page.Cadastrar();
+		//new Select(driver.findElement(By.id("elementosForm:escolaridade"))).selectByVisibleText("Mestrado");		
+		Assert.assertTrue(page.ObterResultado().startsWith("Cadastrado!"));// verifica se a string começa com o valor esperado.
+		Assert.assertTrue(page.ObterNome().endsWith("Flavio"));// verifica se a String termina com o valor esperado. 
+		Assert.assertTrue(page.ObterSobreNome().contains("Souza"));
+		Assert.assertTrue(page.ObterSexo().contains("Masculino"));
+		Assert.assertTrue(page.ObterComidaFavorita().contains("Pizza"));
+		Assert.assertTrue(page.obterEscolaridade().contains("mestrado"));
 		Assert.assertTrue(dsl.ObterTexto("descEsportes").contains("Natacao"));
 	}
 }
