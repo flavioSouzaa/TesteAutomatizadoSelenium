@@ -11,69 +11,66 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import br.ce.wcaquino.core.BaseTest;
 import br.ce.wcaquino.core.DSL;
 import br.ce.wcaquino.core.DriverFacory;
 import br.cr.wcaquino.page.ValidacoesPage;
 
-public class Validacoes {
+public class Validacoes extends BaseTest{
 
-		private DSL dsl;
+	private DSL dsl;
 	private ValidacoesPage page;
 	
 	@Before
 	public void Inicializa() {
 		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		dsl = new DSL();
-		page = new ValidacoesPage(getDriver());
+		page = new ValidacoesPage();
 	}
-	
-	@After
-	public void Finalizar() {
-		DriverFacory.KillDriver();
-	}
+		
 	
 	@Test
 	public void ValidarCampoNome() {		
-		page.Cadastrar();
+		page.cadastrar();
 		assertEquals("Nome eh obrigatorio", dsl.AlertObterTextoAceita());			
 	}
 	
 	@Test 
 	public void validarSobreNome() {		
-		page.SetNome("flavio");
-		page.Cadastrar();
+		page.setNome("flavio");
+		page.cadastrar();
 		assertEquals("Sobrenome eh obrigatorio", dsl.AlertObterTextoAceita());		
 	}	
 		
 	@Test
 	public void validarSexo() {		
-		page.SetNome("Teste");
-		page.SetSobreNome("sobrenome");
-		page.Cadastrar();
+		page.setNome("Teste");
+		page.setSobrenome("sobrenome");
+		page.cadastrar();
 		assertEquals("Sexo eh obrigatorio", dsl.AlertObterTextoAceita());			
 	}
 	
 	@Test
 	public void validarComidaFavorita() {		
-		page.SetNome("Teste");
-		page.SetSobreNome("sobrenome");
-		page.SetSexoMasculino();
-		page.SetComunidaFavoritaCarne();
-		page.SetComunidaFavoritaVegetariano();
-		page.Cadastrar();
+		page.setNome("Teste");
+		page.setSobrenome("sobrenome");
+		page.setSexoMasculino();
+		page.setComidaCarne();
+		page.setComidaVegetariano();
+		page.cadastrar();
 		String msg = "Tem certeza que voce eh vegetariano?";
 		assertEquals(msg, dsl.AlertObterTextoAceita());				
 	}
 	
 	@Test
 	public void validarEsporte() {				
-		page.SetNome("Teste");
-		page.SetSobreNome("sobrenome");
-		page.SetSexoMasculino();
-		page.SetComunidaFavoritaCarne();
-		page.SetTipoEsporte("Natacao","O que eh esporte?");			
+		page.setNome("Teste");
+		page.setSobrenome("sobrenome");
+		page.setSexoMasculino();
+		page.setComidaCarne();
+		page.setEsporte("Natacao","O que eh esporte?");			
 		assertEquals(2, dsl.ObterQuantidadeDeCombosSelecionados("elementosForm:esportes"));//opcional 
-		page.Cadastrar();
+		page.cadastrar();
 		String msgCampo = "Voce faz esporte ou nao?";
 		assertEquals(msgCampo, dsl.AlertObterTextoAceita());
 	}	

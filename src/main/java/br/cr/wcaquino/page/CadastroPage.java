@@ -2,17 +2,12 @@ package br.cr.wcaquino.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import br.ce.wcaquino.core.BasePage;
 import br.ce.wcaquino.core.DSL;
 
 
-public class CadastroPage {
-
-	private DSL dsl;
-
-	public CadastroPage(WebDriver driver) {
-		dsl = new  DSL();
-	}
-	
+public class CadastroPage extends BasePage{
+		
 	public void SetNome(String nome) {
 		dsl.Escreve("elementosForm:nome",nome);
 	}

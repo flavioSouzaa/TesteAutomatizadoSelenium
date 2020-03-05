@@ -13,9 +13,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import br.ce.wcaquino.core.BaseTest;
 import br.cr.wcaquino.page.CadastroPage;
 
-public class Cadastro {
+public class Cadastro extends BaseTest {
 	
 	private CadastroPage page;
 
@@ -23,15 +24,11 @@ public class Cadastro {
 	public void Inicializa() {
 		//DriverFacory.getDriver().get// irá importar uma parte do caminho.
 		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");		
-		page = new CadastroPage(getDriver());
+		page = new CadastroPage();
 	}
 
-	@After
-	public void Finalizar() {
-		KillDriver();
-	}
 
-	@Test
+	@Test// modo convencional e sem a parte de estrutura de código. 
 	public void CadastroTesteCompleto() {
 		getDriver().findElement(By.id("elementosForm:nome")).sendKeys("Flavio");
 		String TextName = getDriver().findElement(By.id("elementosForm:nome")).getAttribute("value");
@@ -55,7 +52,7 @@ public class Cadastro {
 		assertEquals(TextTipo, VerificaCombo);
 
 		element = getDriver().findElement(By.id("elementosForm:esportes"));
-		Select combo1 = new Select(element);
+		Select combo1 = new Select(element); 
 		combo1.selectByVisibleText("Natacao");
 		String TextModalidade = "Natacao";
 		assertEquals(TextModalidade, combo1.getFirstSelectedOption().getText());
@@ -70,7 +67,7 @@ public class Cadastro {
 		Assert.assertTrue(getDriver().findElement(By.id("descEsportes")).getText().contains("Natacao"));
 	}
 
-	@Test
+	@Test // modo simplificado e estruturado 
 	public void CadastroSimplificado() {
 		page.SetNome("Flavio");
 		page.SetSobreNome("Souza");

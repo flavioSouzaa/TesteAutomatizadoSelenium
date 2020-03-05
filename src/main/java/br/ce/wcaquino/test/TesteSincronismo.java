@@ -23,7 +23,7 @@ public class TesteSincronismo {
 	public void Inicializa() {
 		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		dsl = new DSL();
-		page = new CadastroPage(getDriver());
+		page = new CadastroPage();
 	}
 
 	@After

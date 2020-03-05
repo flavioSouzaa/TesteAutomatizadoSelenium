@@ -1,74 +1,167 @@
 package br.cr.wcaquino.page;
 
-import org.openqa.selenium.WebDriver;
+import java.util.Arrays;
+import java.util.List;
 
-import br.ce.wcaquino.core.DSL;
+import org.openqa.selenium.By;
 
-public class ValidacoesPage {
+import br.ce.wcaquino.core.BasePage;
 
-	private DSL dsl;
-	
-	public ValidacoesPage(WebDriver driver) {
-		dsl = new DSL();
-	}
-	
-	public void SetNome(String nome) {
-		dsl.Escreve("elementosForm:nome",nome);
+public class ValidacoesPage extends BasePage {
+
+	public void setNome(String nome) {
+		dsl.Escreve("elementosForm:nome", nome);
 	}
 	
-	public void SetSobreNome(String sobrenome) {
-		dsl.Escreve("elementosForm:sobrenome",sobrenome);
+	public void setSobrenome(String sobrenome) {
+		dsl.Escreve("elementosForm:sobrenome", sobrenome);
 	}
 	
-	public void SetSexoMasculino() {
-		dsl.ClicarCheck("elementosForm:sexo:0");
+	public void setSexoMasculino(){
+		dsl.ClicarRadio("elementosForm:sexo:0");
 	}
-
-	public void SetSexoFeminino() {
-		dsl.ClicarCheck("elementosForm:sexo:1");
+	
+	public void setSexoFeminino(){
+		dsl.ClicarRadio("elementosForm:sexo:1");
 	}
-	public void SetComunidaFavoritaCarne() {
+	
+	public void setComidaCarne(){
 		dsl.ClicarRadio("elementosForm:comidaFavorita:0");
 	}
-	public void SetComunidaFavoritaFrango() {
+	public void setComunidaFrango() {
 		dsl.ClicarRadio("elementosForm:comidaFavorita:1");
 	}
-	public void SetComunidaFavoritaPizza() {
+	
+	public void setComidaPizza(){
 		dsl.ClicarRadio("elementosForm:comidaFavorita:2");
 	}
-	public void SetComunidaFavoritaVegetariano() {
+	
+	public void setComidaVegetariano(){
 		dsl.ClicarRadio("elementosForm:comidaFavorita:3");
 	}
-	public void EscolaridadeMestrado(String tipo) {
-		dsl.SelecionarCombo("elementosForm:escolaridade",tipo);
+	
+	public void setEscolaridade(String valor) {
+		dsl.SelecionarCombo("elementosForm:escolaridade", valor);
 	}
-	public void SetTipoEsporte (String... valores) {
-		for(String valor: valores) {
-			dsl.SelecionarCombo("elementosForm:esportes",valor);
-		}
+	
+	public void setEsporte(String... valores) {
+		for(String valor: valores)
+			dsl.SelecionarCombo("elementosForm:esportes", valor);
 	}
+	
+	public void cadastrar(){
+		dsl.ClicarBotao("elementosForm:cadastrar");
+	}
+	
+	public String obterResultadoCadastro(){
+		return dsl.ObterTexto(By.xpath("//*[@id='resultado']/span"));
+	}
+	
+	
+	public String obterNomeCadastro(){
+		return dsl.ObterTexto(By.xpath("//*[@id='descNome']/span"));
+	}
+	
+	public String obterSobrenomeCadastro(){
+		return dsl.ObterTexto(By.xpath("//*[@id='descSobrenome']/span"));
+	}
+	
+	public String obterSexoCadastro(){
+		return dsl.ObterTexto(By.xpath("//*[@id='descSexo']/span"));
+	}
+	
+	public String obterComidaCadastro(){
+		return dsl.ObterTexto(By.xpath("//*[@id='descComida']/span"));
+	}
+	
+	public String obterEscolaridadeCadastro(){
+		return dsl.ObterTexto(By.xpath("//*[@id='descEscolaridade']/span"));
+	}
+	
+	public String obterEsportesCadastro(){
+		return dsl.ObterTexto(By.xpath("//*[@id='descEsportes']/span"));
+	}
+	
+	
+	
+	
+	/********************* Escrita ****************/
+
+	public void SetTextFild(String nome) {
+		dsl.Escreve("elementosForm:nome", nome);
+	}
+	public void SetNome(String nome) {
+		dsl.Escreve("elementosForm:nome", nome);
+	}
+	public void SetTextFildDuplo(String nome) {
+		dsl.Escreve("elementosForm:nome", nome);
+	}
+	public void SetCaixaDeTexto(String nome) {
+		dsl.Escreve("elementosForm:sugestoes", nome);
+	}
+	public void SetEscolaridade(String nome) {
+		dsl.SelecionarCombo("elementosForm:escolaridade",nome);
+	}
+	public boolean SetOpcoesCombo(String nome) {
+		return dsl.VerificaOpcoesCombo("elementosForm:escolaridade", nome);
+	}
+	public void SetTipoEsporte (String tipo) {
+		dsl.SelecionarCombo("elementosForm:esportes",tipo);
+	}
+	public void SetDesmarcarEsport(String tipo) {
+		dsl.DeslecionarCombo("elementosForm:esportes", tipo);
+	}
+
+
+	/********************* Clicks botões ****************/
 	public void Cadastrar() {
 		dsl.ClicarBotao("elementosForm:cadastrar");
 	}
-	public String ObterResultado() {
-		return dsl.ObterTexto("resultado");
+	public void Radio() {
+		dsl.ClicarRadio("elementosForm:sexo:0");
 	}
-	public String ObterNome() {
-		return dsl.ObterTexto("descNome");
+	public void Check() {
+		dsl.ClicarCheck("elementosForm:comidaFavorita:1");	
 	}
-	public String ObterSobreNome() {
-		return dsl.ObterTexto("descSobrenome");
+
+	/********************* Obter Campos ****************/
+	public String ObterResultadoTextFild() {
+		return dsl.ObterValorCampo("elementosForm:nome");
 	}
-	public String ObterSexo() {
-		return dsl.ObterTexto("descSexo");
+
+	public String ObterResultadoTextFildDuplo() {
+		return dsl.ObterValorCampo("elementosForm:nome");
 	}
-	public String ObterComidaFavorita() {
-		return dsl.ObterTexto("descComida");
+	public String ObterResultadoCaixaDeTexto() {
+		return dsl.ObterValorCampo("elementosForm:sugestoes");
 	}
-	public String obterEscolaridade() {
-		return dsl.ObterTexto("descEscolaridade");
+	public boolean ObterResultadoRadioMarcadoMasculino() {
+		return dsl.isRadioMarcodo("elementosForm:sexo:0");
 	}
-	public String obterEsport() {
-		return dsl.ObterTexto("descEsportes");
+	public boolean ObterResultadoRadioMarcadoFeminino() {
+		return dsl.isRadioMarcodo("elementosForm:comidaFavorita:1");
 	}
+	public String ObterResultadoEscolaridade() {
+		return dsl.ObterValorCombo("elementosForm:escolaridade");
+	}
+	public int ObeterResultadoDaQuantidadeCombo() {
+		return dsl.obterQuantidadeOpcoesCombo("elementosForm:escolaridade");
+	}
+	public List<String> ObeterQuantidadeDeEsportesSelecionados() {
+		List<String> opcoesMarcadas = dsl.ObterValoresCombo("elementosForm:esportes");
+		return opcoesMarcadas;
+	}
+	public List<String> ObeterQuantidadeDeEsportesDesmarcadas() {
+		List<String> opcoesMarcadas = dsl.ObterValoresCombo("elementosForm:esportes");
+		return opcoesMarcadas;
+	}
+	
+	public List<String> ObeterQuantidadeDeObsoesMarcadas(String tipo1 , String tipo2) {
+		List<String> opcoesMarcadas = dsl.ObterValoresCombo("elementosForm:esportes");
+		opcoesMarcadas.containsAll(Arrays.asList("Natacao","O que eh esporte?"));
+		return opcoesMarcadas;
+	}
+	
+	
+	
 }

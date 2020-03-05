@@ -7,23 +7,20 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.apache.commons.lang3.text.StrBuilder;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
+import br.ce.wcaquino.core.BaseTest;
 import br.ce.wcaquino.core.DSL;
-import br.ce.wcaquino.core.DriverFacory;
+import br.cr.wcaquino.page.CadastroPage;
 import br.cr.wcaquino.page.ValidacoesPage;
+
 @RunWith(Parameterized.class)
-public class TesteRegraCadastro {
+public class TesteRegraCadastro extends BaseTest {
 	private DSL dsl;
 	private ValidacoesPage page;
 	
@@ -44,13 +41,9 @@ public class TesteRegraCadastro {
 	public void Inicializa() {
 		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		dsl = new DSL();
-		page = new ValidacoesPage(getDriver());
+		page = new ValidacoesPage();
 	}
 	
-	@After
-	public void Finalizar() {
-		DriverFacory.KillDriver();
-	}
 	@Parameters
 	public static Collection<Object[]> getCollection(){
 		return Arrays.asList(new Object[][] {
@@ -65,20 +58,20 @@ public class TesteRegraCadastro {
 	
 	@Test
 	public void deveValidarRegras() {				
-		page.SetNome(nome);
-		page.SetSobreNome(sobrenome);
+		page.setNome(nome);
+		page.setSobrenome(sobrenome);
 		if(sexo.equals("Masculino")){
-			page.SetSexoMasculino();
+			page.setSexoMasculino();
 		}
 		if(sexo.equals("Feminino")){
-			page.SetSexoFeminino();
+			page.setSexoFeminino();
 		}
-		if(comidas.contains("Carne"))page.SetComunidaFavoritaCarne();
-		if(comidas.contains("Frango"))page.SetComunidaFavoritaFrango();
-		if(comidas.contains("Pizza"))page.SetComunidaFavoritaPizza();
-		if(comidas.contains("Vegetariano"))page.SetComunidaFavoritaVegetariano();
-		page.SetTipoEsporte(esportes);		
-		page.Cadastrar();		
+		if(comidas.contains("Carne"))page.setComidaCarne();
+		if(comidas.contains("Frango"))page.setComunidaFrango();
+		if(comidas.contains("Pizza"))page.setComidaPizza();
+		if(comidas.contains("Vegetariano"))page.setComidaVegetariano();
+		page.setEsporte(esportes);		
+		page.cadastrar();		
 		assertEquals(msg, dsl.AlertObterTextoAceita());
 	}	
 	

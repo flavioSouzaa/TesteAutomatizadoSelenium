@@ -22,7 +22,7 @@ public class TesteAjax {
 	public void Inicializa() {
 		getDriver().get("https://www.primefaces.org/showcase/ui/ajax/basic.xhtml");
 		dsl = new DSL();
-		page = new CadastroPage(getDriver());
+		page = new CadastroPage();
 	}
 
 	@After
