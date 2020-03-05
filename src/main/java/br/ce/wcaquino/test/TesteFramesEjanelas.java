@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -14,22 +15,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import br.ce.wcaquino.core.BaseTest;
 import br.ce.wcaquino.core.DSL;
 import br.ce.wcaquino.core.DriverFacory;
 
-public class TesteFramesEjanelas {
+public class TesteFramesEjanelas extends BaseTest{
 	private DSL dsl;
 	
 	@Before
 	public void Inicializa() {
 		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");	
 		dsl = new DSL();
-	}
-	
-	@After
-	public void Finalizar() {
-		KillDriver();
 	}	
+	
 	
 	@Test
 	public void TestFrame() {
@@ -52,6 +50,7 @@ public class TesteFramesEjanelas {
 	}
 	
 	@Test
+	
 	public void InteragirComJanelas() {
 		dsl.ClicarBotao("buttonPopUpEasy");
 		dsl.estabelecerFoco("Popup");
@@ -62,6 +61,7 @@ public class TesteFramesEjanelas {
 	}		
 	
 	@Test
+	
 	public void InteragiComJanelasSemTitulo() {		
 		dsl.ClicarBotao("buttonPopUpHard");
 		dsl.NevegaEntreJanelas(1);

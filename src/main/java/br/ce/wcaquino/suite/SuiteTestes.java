@@ -1,9 +1,12 @@
 package br.ce.wcaquino.suite;
 
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
+import br.ce.wcaquino.core.DriverFacory;
 import br.ce.wcaquino.test.Cadastro;
 import br.ce.wcaquino.test.TestAlert;
 import br.ce.wcaquino.test.TesteFramesEjanelas;
@@ -22,4 +25,8 @@ import br.ce.wcaquino.test.TestesCampoDeTreinamento;
 })
 public class SuiteTestes {
 
+	@AfterClass
+	public static void FechaTudo() {	
+		DriverFacory.KillDriver();
+	}
 }

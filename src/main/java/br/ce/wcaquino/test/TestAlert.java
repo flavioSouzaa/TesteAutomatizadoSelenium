@@ -11,10 +11,11 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import br.ce.wcaquino.core.BaseTest;
 import br.ce.wcaquino.core.DSL;
 import br.ce.wcaquino.core.DriverFacory;
 
-public class TestAlert {
+public class TestAlert extends BaseTest{
 	private DSL dsl;
 	
 	@Before
@@ -23,10 +24,6 @@ public class TestAlert {
 		dsl = new DSL();
 	}
 	
-	@After
-	public void Finalizar() {
-		DriverFacory.KillDriver();
-	}	
 
 	@Test
 	public void interagirComAlertSimples() {

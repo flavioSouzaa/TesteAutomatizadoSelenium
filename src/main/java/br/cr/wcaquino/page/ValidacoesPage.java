@@ -141,6 +141,10 @@ public class ValidacoesPage extends BasePage {
 	public boolean ObterResultadoRadioMarcadoFeminino() {
 		return dsl.isRadioMarcodo("elementosForm:comidaFavorita:1");
 	}
+	public boolean ObterRadioMarcadoComidaFrango() {
+		return dsl.isRadioMarcodo("elementosForm:comidaFavorita:1");
+	}
+	
 	public String ObterResultadoEscolaridade() {
 		return dsl.ObterValorCombo("elementosForm:escolaridade");
 	}

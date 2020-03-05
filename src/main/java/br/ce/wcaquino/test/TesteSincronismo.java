@@ -11,11 +11,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import br.ce.wcaquino.core.BaseTest;
 import br.ce.wcaquino.core.DSL;
 import br.ce.wcaquino.core.DriverFacory;
 import br.cr.wcaquino.page.CadastroPage;
 
-public class TesteSincronismo {
+public class TesteSincronismo extends BaseTest {
 	private DSL dsl;
 	private CadastroPage page;
 
@@ -24,11 +25,6 @@ public class TesteSincronismo {
 		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		dsl = new DSL();
 		page = new CadastroPage();
-	}
-
-	@After
-	public void Finalizar() {
-		DriverFacory.KillDriver();
 	}
 	
 	@Test

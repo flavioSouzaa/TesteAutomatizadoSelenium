@@ -73,9 +73,6 @@ public class TesteRegraCadastro extends BaseTest {
 		page.setEsporte(esportes);		
 		page.cadastrar();		
 		assertEquals(msg, dsl.AlertObterTextoAceita());
-	}	
-	
-	
-		
+	}			
 	
 }

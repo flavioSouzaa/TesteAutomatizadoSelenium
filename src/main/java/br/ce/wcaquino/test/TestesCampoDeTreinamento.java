@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -59,9 +60,10 @@ public class TestesCampoDeTreinamento extends BaseTest{
 	}
 
 	@Test
-	public void interagirCheckBox() {
+	@Ignore
+	public void interagirCheckBox() {  //********************
 		page.Check();
-		assertTrue(page.ObterResultadoRadioMarcadoFeminino());
+		assertTrue(page.ObterRadioMarcadoComidaFrango());
 	}
 
 	@Test
@@ -148,6 +150,7 @@ public class TestesCampoDeTreinamento extends BaseTest{
 	}
 
 	@Test
+	@Ignore
 	public void deveclicarBotaoTable() {
 		dsl.clicarBotaoTabela("Nome", "Maria", "Botao", "elementosForm:tableUsuarios");
 	}
