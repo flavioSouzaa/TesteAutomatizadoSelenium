@@ -1,7 +1,8 @@
-package Page;
+package br.cr.wcaquino.page;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import reuse.DSL;
+import br.ce.wcaquino.core.DSL;
 
 
 public class CadastroPage {
@@ -9,7 +10,7 @@ public class CadastroPage {
 	private DSL dsl;
 
 	public CadastroPage(WebDriver driver) {
-		dsl = new  DSL(driver);
+		dsl = new  DSL();
 	}
 	
 	public void SetNome(String nome) {
@@ -39,31 +40,31 @@ public class CadastroPage {
 	public void EscolaridadeMestrado(String tipo) {
 		dsl.SelecionarCombo("elementosForm:escolaridade",tipo);
 	}
-	public void SetTipoEsportevoid (String tipo) {
+	public void SetTipoEsporte (String tipo) {
 		dsl.SelecionarCombo("elementosForm:esportes",tipo);
 	}
 	public void Cadastrar() {
 		dsl.ClicarBotao("elementosForm:cadastrar");
 	}
-	public String ObterResultado() {
-		return dsl.ObterTexto("resultado");
+	public String ObterResultadoCadastro() {
+		return dsl.ObterTexto(By.xpath("//*[@id='resultado']/span"));
 	}
-	public String ObterNome() {
-		return dsl.ObterTexto("descNome");
+	public String ObterNomeCadastro() {
+		return dsl.ObterTexto(By.xpath("//*[@id='descNome']/span"));
 	}
-	public String ObterSobreNome() {
-		return dsl.ObterTexto("descSobrenome");
+	public String ObterSobreNomeCadastro() {
+		return dsl.ObterTexto(By.xpath("//*[@id='descSobrenome']/span"));
 	}
-	public String ObterSexo() {
-		return dsl.ObterTexto("descSexo");
+	public String ObterSexoCadastro() {
+		return dsl.ObterTexto(By.xpath("//*[@id='descSexo']/span"));
 	}
-	public String ObterComidaFavorita() {
-		return dsl.ObterTexto("descComida");
+	public String ObterComidaFavoritaCadastro() {
+		return dsl.ObterTexto(By.xpath("//*[@id='descComida']/span"));
 	}
-	public String obterEscolaridade() {
-		return dsl.ObterTexto("descEscolaridade");
+	public String obterEscolaridadeCadastro() {
+		return dsl.ObterTexto(By.xpath("//*[@id='descEscolaridade']/span"));
 	}
-	public String obterEsport() {
-		return dsl.ObterTexto("descEsportes");
+	public String obterEsportCadastro() {
+		return dsl.ObterTexto(By.xpath("//*[@id='descEsportes']/span"));
 	}
 }

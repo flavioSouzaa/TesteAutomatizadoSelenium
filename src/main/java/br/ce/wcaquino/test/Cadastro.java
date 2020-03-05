@@ -1,3 +1,4 @@
+package br.ce.wcaquino.test;
 
 import static br.ce.wcaquino.core.DriverFacory.KillDriver;
 import static br.ce.wcaquino.core.DriverFacory.getDriver;
@@ -22,7 +23,7 @@ public class Cadastro {
 	public void Inicializa() {
 		//DriverFacory.getDriver().get// irá importar uma parte do caminho.
 		getDriver().get("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");		
-		page = new CadastroPage();
+		page = new CadastroPage(getDriver());
 	}
 
 	@After

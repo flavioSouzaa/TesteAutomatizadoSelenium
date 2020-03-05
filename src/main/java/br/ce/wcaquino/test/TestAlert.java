@@ -1,3 +1,4 @@
+package br.ce.wcaquino.test;
 
 import static org.junit.Assert.assertEquals;
 

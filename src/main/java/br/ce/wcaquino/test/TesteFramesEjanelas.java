@@ -1,3 +1,4 @@
+package br.ce.wcaquino.test;
 
 import static br.ce.wcaquino.core.DriverFacory.KillDriver;
 import static br.ce.wcaquino.core.DriverFacory.getDriver;
